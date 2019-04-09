@@ -15,3 +15,48 @@
 @import "variables";
 @import "bootstrap";
 @import "bootswatch";
+
+body {
+  margin-top: 70px;
+}
+ul {
+  margin: 0;
+  padding:0
+}
+
+@media (max-width: 767px) {
+  .hide_mobile {
+    display: none;
+  }
+}
+
+////////////
+
+.column {
+  @extend .col-md-6;
+  text-align: center;
+}
+.form {
+  @extend .col-md-6;
+}
+.form-centered {
+  @extend .col-md-6;
+  text-align: center;
+}
+.submit {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+}
+
+// apply styles to HTML elements
+// to make views framework-neutral
+main {
+  @extend .container;
+  margin-top: 30px; // accommodate the navbar
+}
+
+section {
+  @extend .row;
+  margin-top: 20px;
+}

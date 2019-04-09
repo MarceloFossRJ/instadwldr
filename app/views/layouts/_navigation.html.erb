@@ -1,0 +1,46 @@
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <%= link_to "InstaDwldr", root_path, class: 'navbar-brand' %>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Viagens <span class="sr-only">(current)</span></a>
+      </li>
+      <% if user_signed_in? %>
+
+        <li class="nav-item">
+          <%= link_to edit_user_registration_path, title: "Editar meus dados", data: { toggle: 'tooltip', placement: 'botton', class: "nav-link" } do %>
+            <i class="fa fa-user"></i>&nbsp;<%= current_user.name %>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, title: "Logout", data: { toggle: 'tooltip', placement: 'botton', class: "nav-link" } do %>
+            <i class="fa fa-sign-out"></i>&nbsp;Logout
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a href="<%= new_user_registration_path %>" class="nav-link">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="<%= new_user_session_path %>" class="nav-link">Login</a>
+        </li>
+      <% end %>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
