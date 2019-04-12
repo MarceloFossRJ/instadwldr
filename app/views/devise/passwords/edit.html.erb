@@ -6,7 +6,7 @@
   <%= f.input :reset_password_token, as: :hidden %>
   <%= f.full_error :reset_password_token %>
 
-  <div class="form-inputs">
+  <div class="form-element-align">
     <%= f.input :password,
                 label: "New password",
                 required: true,
@@ -17,8 +17,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
+    <%= f.button :submit, "Change my password", :class => 'btn-primary' %>
   </div>
 <% end %>
-
+<br>
 <%= render "devise/shared/links" %>
