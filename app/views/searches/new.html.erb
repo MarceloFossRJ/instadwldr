@@ -1,0 +1,13 @@
+<div class="form-element-align">
+  <h1>Intagram picture download</h1>
+</div>
+
+<div class="form-element-align">
+  <%= simple_form_for @search do |f| %>
+    <%= f.input :instagram_path %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Download", :class => 'btn-primary' %>
+    </div>
+  <% end %>
+</div>
