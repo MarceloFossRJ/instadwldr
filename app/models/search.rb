@@ -2,6 +2,8 @@ require 'rake'
 Instadwldr::Application.load_tasks
 
 class Search
+  include SessionInfo
+
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -26,7 +28,10 @@ class Search
   validates :instagram_path, presence: true
 
   after_create do
-    Search.run_rake('call_go_insta_scraper:run', self.instagram_path, './public/dwlds/')
+    dir = Rails.root.join('public', 'dwlds', session_id)
+    Dir.mkdir(dir) unless Dir.exist?(dir)
+    logger.debug "DIRECTORY PATH: #{dir}"
+    Search.run_rake('call_go_insta_scraper:run', self.instagram_path, "./public/dwlds/#{session_id}/")
   end
 
   def self.run_rake(task_name, insta_path, dest_path)
