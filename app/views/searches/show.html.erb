@@ -11,8 +11,8 @@
       <% files = Dir.glob("./public/dwlds/#{session[:session_id]}/**/*") %>
       <% files.each do |f| %>
         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-          <a data-toggle="modal" href="#exampleModalLong" data-target="#exampleModal">
-          <img src="<%= f.to_s.gsub!('./public/', '/') %>" class="img-fluid ">
+          <a data-toggle="modal" href="#mediaModal" data-target="#mediaModal">
+          <img src="<%= f.to_s.gsub!('./public/', '/') %>" class="img-fluid rounded">
           </a>
         </div>
       <% end %>
@@ -22,18 +22,10 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
-
-
-
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <% files.each do |g| %>
@@ -58,9 +50,6 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
-
-
 
       </div>
     </div>
