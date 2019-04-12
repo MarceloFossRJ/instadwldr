@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       if @search.save
-        format.html { redirect_to @search, notice: 'User was successfully created.' }
+        format.html { redirect_to @search, notice: 'Media sucessfully downloaded' }
         format.json { render :show, status: :created, location: @search }
       else
         format.html { render :new }
