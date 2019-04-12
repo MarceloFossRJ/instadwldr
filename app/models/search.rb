@@ -20,13 +20,13 @@ class Search
   field :is_bot, type: Boolean
   field :is_mobile, type: Boolean
   field :device_name, type: String
-  field :device_platform, type: String
-  #field :os, type: String
+  field :platform_name, type: String
+  field :platform_version, type: String
 
   validates :instagram_path, presence: true
 
   after_create do
-    Search.run_rake('call_go_insta_scraper:run', self.instagram_path, './public/')
+    Search.run_rake('call_go_insta_scraper:run', self.instagram_path, './public/dwlds/')
   end
 
   def self.run_rake(task_name, insta_path, dest_path)

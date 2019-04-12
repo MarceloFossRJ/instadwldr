@@ -22,8 +22,8 @@ class SearchesController < ApplicationController
     params[:search][:browser_version] = @browser_version
     params[:search][:is_bot] = @is_bot
     params[:search][:device_name] = @device_name
-    params[:search][:device_platform] = @device_platform
-    #params[:search][:os] = @os
+    params[:search][:platform_name] = @platform_name
+    params[:search][:platform_version] = @platform_version
     params[:search][:is_mobile] = @is_mobile
 
     @search = Search.new(search_params)
@@ -62,7 +62,7 @@ class SearchesController < ApplicationController
     @postal_code = r.postal_code
     @city = r.city
     @address = r.address.first
-    @coordinates = r.coordinates.first.to_s
+    @coordinates = r.coordinates.first.to_s + "," + r.coordinates.last.to_s
     @referer = request.referer
 
     user_agent = Browser.new(request.env["HTTP_USER_AGENT"])
@@ -71,13 +71,14 @@ class SearchesController < ApplicationController
     @browser_version = user_agent.version
     @is_bot = user_agent.bot?
     @device_name = user_agent.device.name
-    @device_platform = user_agent.platform.name
-    #@os = user_agent.os.to_s
+    @platform_name = user_agent.platform.name
+    @platform_version = user_agent.platform.version
     @is_mobile = user_agent.device.mobile?
   end
 
   def search_params
     params.require(:search).permit(:instagram_path, :ip, :country, :state, :postal_code, :city, :address, :coordinates,
-                                   :referer, :browser_name, :browser_version, :is_bot, :device_name, :device_platform, :is_mobile)
+                                   :referer, :browser_name, :browser_version, :is_bot, :device_name, :platform_name,
+                                   :platform_version, :is_mobile)
   end
 end
