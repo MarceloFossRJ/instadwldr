@@ -1,13 +1,35 @@
 <div class="form-element-align">
-  <h1>Instagram picture download</h1>
+  <h1>Instagram picture downloader</h1>
 </div>
 
 <div class="form-element-align">
   <%= simple_form_for @search do |f| %>
-    <%= f.input :instagram_path %>
+    <%= f.input :instagram_path, required: false %>
 
     <div class="form-actions">
       <%= f.button :submit, "Download", :class => 'btn-primary' %>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#instructionsModal">
+        Instructions
+      </button>
     </div>
   <% end %>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h6>Instructions</h6>
+        Simply enter Instagram's image URL on the 'Text-box' and click on the 'Download' Button.<br>
+        The downloaded images/video will be displayed in the next page.<br>
+        Then simply click the “Download” link to save the images/videos or just right-click the images/video center and click “Save Image as...”<br>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- TODO Download instructions -->
+
+
+<!-- TODO Open Instagram site in a modal and automatically copy picture path -->
