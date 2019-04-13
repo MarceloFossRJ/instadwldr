@@ -1,8 +1,6 @@
 class SearchesController < ApplicationController
   before_action :visitor_analytics
 
-
-
   # GET /search/new
   def new
     @search = Search.new
@@ -26,6 +24,8 @@ class SearchesController < ApplicationController
     params[:search][:platform_name] = @platform_name
     params[:search][:platform_version] = @platform_version
     params[:search][:is_mobile] = @is_mobile
+    params[:search][:session_id] = session[:session_id]
+
 
     @search = Search.new(search_params)
 
@@ -75,7 +75,7 @@ class SearchesController < ApplicationController
     @referer = request.referer
 
     user_agent = Browser.new(request.env["HTTP_USER_AGENT"])
-    #@application = user_agent.application
+
     @browser_name = user_agent.name
     @browser_version = user_agent.version
     @is_bot = user_agent.bot?
@@ -88,6 +88,6 @@ class SearchesController < ApplicationController
   def search_params
     params.require(:search).permit(:instagram_path, :ip, :country, :state, :postal_code, :city, :address, :coordinates,
                                    :referer, :browser_name, :browser_version, :is_bot, :device_name, :platform_name,
-                                   :platform_version, :is_mobile)
+                                   :platform_version, :is_mobile, :session_id)
   end
 end
