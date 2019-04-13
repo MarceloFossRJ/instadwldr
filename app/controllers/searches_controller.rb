@@ -1,6 +1,8 @@
 class SearchesController < ApplicationController
   before_action :visitor_analytics
 
+
+
   # GET /search/new
   def new
     @search = Search.new
@@ -17,7 +19,6 @@ class SearchesController < ApplicationController
     params[:search][:address] = @address
     params[:search][:coordinates] = @coordinates
     params[:search][:referer] = @referer
-#    params[:search][:application] = @application
     params[:search][:browser_name] = @browser_name
     params[:search][:browser_version] = @browser_version
     params[:search][:is_bot] = @is_bot
@@ -30,7 +31,7 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       if @search.save
-        format.html { redirect_to @search, notice: 'Media sucessfully downloaded' }
+        format.html { redirect_to @search, notice: 'Media sucessfully retrieved.' }
         format.json { render :show, status: :created, location: @search }
       else
         format.html { render :new }
@@ -39,12 +40,20 @@ class SearchesController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
+  # GET /searches/1
+  # GET /searches/1.json
   def show
     @search = Search.find(params[:id])
   end
 
+  # DELETE /searches/1
+  # DELETE /searches/1.json
+  def destroy
+    file_path = Search.zip(session[:session_id])
+
+    send_file(file_path)
+
+  end
 
   private
 

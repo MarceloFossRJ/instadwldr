@@ -30,12 +30,24 @@ class Search
   after_create do
     dir = Rails.root.join('public', 'dwlds', session_id)
     Dir.mkdir(dir) unless Dir.exist?(dir)
-    logger.debug "DIRECTORY PATH: #{dir}"
     Search.run_rake('call_go_insta_scraper:run', self.instagram_path, "./public/dwlds/#{session_id}/")
   end
+
+  def self.zip(dir)
+    directoryToZip = Rails.root.join('public', 'dwlds', dir)
+    logger.debug("PATH=#{directoryToZip}" )
+    outputFile = Rails.root.join('public', 'dwlds', dir, 'instaDwldr.zip')
+    zf = ZipFileGenerator.new(directoryToZip, outputFile)
+    zf.write()
+    return outputFile
+  end
+
+  private
 
   def self.run_rake(task_name, insta_path, dest_path)
     load File.join(Rails.root, 'lib', 'tasks', 'call_go_insta_scraper.rake')
     Rake::Task[task_name].execute(OpenStruct.new({param1: insta_path, param2: dest_path}))
   end
+
+
 end
