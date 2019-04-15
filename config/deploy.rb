@@ -3,7 +3,7 @@ lock "~> 3.11.0"
 
 server 'ethanol.f055.com', roles: [:web, :app, :db], primary: true
 
-set :branch, "cap_deploy"
+set :branch, "master"
 
 set :application, "instadwldr"
 set :user, "foss"
