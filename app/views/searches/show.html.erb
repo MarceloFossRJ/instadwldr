@@ -2,9 +2,14 @@
   <h1>Instagram picture downloader</h1>
 </div>
 <div class="form-actions">
-  <a href="<%= new_search_path %>" class="btn btn-primary">Another Download</a>
-
-  <%= link_to "Zip to Disk", search_path(@search), method: :delete, :class => 'btn btn-primary' %>
+  <%= link_to "Another download".html_safe,
+              new_search_path,
+              :class => 'btn btn-primary',
+              data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Going to another download ..."} %>
+  <%= link_to "Zip to Disk".html_safe,
+              search_path(@search),
+              method: :delete,
+              :class => 'btn btn-primary'%>
 
 </div>
 <br>

@@ -1,5 +1,5 @@
 <div class="form-element-align">
-  <h1>Instagram picture downloader</h1>
+  <h1>Instagram media downloader</h1>
 </div>
 
 <div class="form-element-align">
@@ -7,7 +7,7 @@
     <%= f.input :instagram_path, required: false %>
 
     <div class="form-actions">
-      <%= f.button :submit, "Download", :class => 'btn-primary' %>
+      <%= f.button :button, "Download media".html_safe, class: "btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Downloading media ..."} %>
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#instructionsModal">
         Instructions
       </button>
