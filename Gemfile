@@ -96,3 +96,4 @@ gem "devise", "~> 4.6.2"
 gem 'geocoder', '>= 1.5.1'
 gem 'browser', '>= 2.5.3'
 gem 'rubyzip', '>= 1.2.2'
+gem 'mini_racer', '>= 0.2.4'
