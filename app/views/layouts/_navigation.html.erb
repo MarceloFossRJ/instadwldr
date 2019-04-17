@@ -15,13 +15,13 @@
       </li>
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to edit_user_registration_path, title: "Editar meus dados", data: { toggle: 'tooltip', placement: 'botton', class: "nav-link" } do %>
-            <i class="fa fa-user"></i>&nbsp;<%= current_user.name %>
+          <%= link_to edit_user_registration_path, class: "nav-link" do %>
+            <i class="fa fa-user"></i>&nbsp;<%= current_user.email %>
           <% end %>
         </li>
 
         <li class="nav-item">
-          <%= link_to destroy_user_session_path, method: :delete, title: "Logout", data: { toggle: 'tooltip', placement: 'botton', class: "nav-link" } do %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link"  do %>
             <i class="fa fa-sign-out"></i>&nbsp;Logout
           <% end %>
         </li>
@@ -30,7 +30,7 @@
           <a href="<%= new_user_registration_path %>" class="nav-link">Sign Up</a>
         </li>
         <li class="nav-item">
-          <a href="<%= new_user_session_path %>" class="nav-link">Login</a>
+          <a href="<%= new_user_session_path %>" class="nav-link"><i class="fa fa-sign-in"></i>&nbsp;Login</a>
         </li>
       <% end %>
 
