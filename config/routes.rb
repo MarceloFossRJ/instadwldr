@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'about/index'
   resources :searches
   get 'home/index'
 

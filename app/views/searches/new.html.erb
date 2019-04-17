@@ -2,12 +2,39 @@
   <h1>Instagram media downloader</h1>
 </div>
 
+
+
 <div class="form-element-align">
   <%= simple_form_for @search do |f| %>
-    <%= f.input :instagram_path, required: false %>
+    <div class="form-row align-items-end">
+      <div class="form-group col-md-6"">
+        <label for="instagram_profile">Instagram profile</label>
+      <input type="text" class="form-control" id="instagram_profile" placeholder="Instagram profile">
+      </div>
+      <div class="form-group col-md-6 ">
+        <button type="button" class="btn btn-info" id="button_insta_pop"  onclick="pop(this.form.instagram_profile.value)">
+          Instagram pop-up
+       </button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-row align-items-end">
+      <div class="form-group col-md-6">
+        <label for="instagram_path">Instagram URL</label>
+        <%= f.input_field :instagram_path,
+                          class: "form-control",
+                          required: false,
+                          placeholder: "Instagram URL" %>
+      </div>
+      <div class="form-group col-md-6 ">
+        <%= f.button :button, "Download media".html_safe, class: "btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Downloading media ..."} %>
+      </div>
+    </div>
 
     <div class="form-actions">
-      <%= f.button :button, "Download media".html_safe, class: "btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Downloading media ..."} %>
+      <br>&nbsp;<br>
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#instructionsModal">
         Instructions
       </button>
@@ -16,7 +43,8 @@
 </div>
 
 
-<!-- Modal -->
+
+<!-- Modal Instructions-->
 <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -30,5 +58,27 @@
   </div>
 </div>
 
+<!-- Modal Instagram-->
+<div class="modal fade" id="theModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h6>Instructions</h6>
+        <embed id="123" src="http://google.com" />
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- TODO Open Instagram site in a modal and automatically copy picture path -->
+
+
+
+<script language="JavaScript">
+function pop(profile) {
+    var popup = window.open("https://www.instagram.com/" + profile + "/","mypopup","width=600,height=700,left=250,top=100");
+    //popup.document.getElementById("player").someFunction();
+}
+</script>

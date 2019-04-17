@@ -18,7 +18,15 @@
     <div class="row">
       <% files = Dir.glob("./public/dwlds/#{session[:session_id]}/**/*") %>
       <% files.each do |f| %>
-        <% if File.extname(f) != '.zip' %>
+        <% if File.extname(f) == '.mp4' %>
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a data-toggle="modal" href="#mediaModal" data-target="#mediaModal">
+              <video width="426" height="240" class="img-fluid rounded">
+                <source src="<%= f.to_s.gsub!('./public/', '/') %>" type="video/mp4" >
+              </video>
+            </a>
+          </div>
+        <% elsif File.extname(f) != '.zip' %>
           <div class="col-lg-3 col-md-4 col-xs-6 thumb">
             <a data-toggle="modal" href="#mediaModal" data-target="#mediaModal">
             <img src="<%= f.to_s.gsub!('./public/', '/') %>" class="img-fluid rounded">
@@ -45,9 +53,17 @@
           <div class="carousel-inner">
 
             <% files.each do |h| %>
-              <div class="carousel-item <%= files.index(h) == 0 ? 'active' : ' '%>">
-                <img class="rounded w-100" src="<%= h %>">
-              </div>
+              <% if File.extname(h) != '.zip' %>
+                <div class="carousel-item <%= files.index(h) == 0 ? 'active' : ' '%>">
+                  <% if File.extname(h) == '.mp4' %>
+                      <video controls="controls" class="rounded w-100">
+                         <source src="<%= h %>" type="video/mp4" class="img-fluid rounded">
+                      </video>
+                  <% else %>
+                      <img class="rounded w-100" src="<%= h %>">
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
 
           </div>
@@ -65,3 +81,4 @@
     </div>
   </div>
 </div>
+
