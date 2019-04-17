@@ -1,5 +1,5 @@
 <div class="form-element-align">
-  <h1>Instagram picture downloader</h1>
+  <h1>Instagram media downloader</h1>
 </div>
 <div class="form-actions">
   <%= link_to "Another download".html_safe,
@@ -44,17 +44,17 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div id="carouselMedia" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <% files.each do |g| %>
-              <li data-target="#carouselExampleIndicators" data-slide-to="<%= files.index(g) %>" class="<%= files.index(g) == 0 ? 'active' : ' '%>" ></li>
+              <li data-target="#carouselMedia" data-slide-to="<%= files.index(g) %>" class="are<%= files.index(g) == 0 ? ' active' : ''%>" ></li>
             <% end %>
           </ol>
           <div class="carousel-inner">
 
             <% files.each do |h| %>
               <% if File.extname(h) != '.zip' %>
-                <div class="carousel-item <%= files.index(h) == 0 ? 'active' : ' '%>">
+                <div class="carousel-item<%= files.index(h) == 0 ? ' active' : ''%>">
                   <% if File.extname(h) == '.mp4' %>
                       <video controls="controls" class="rounded w-100">
                          <source src="<%= h %>" type="video/mp4" class="img-fluid rounded">
@@ -67,11 +67,11 @@
             <% end %>
 
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <a class="carousel-control-prev" href="#carouselMedia" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <a class="carousel-control-next" href="#carouselMedia" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -81,4 +81,3 @@
     </div>
   </div>
 </div>
-
